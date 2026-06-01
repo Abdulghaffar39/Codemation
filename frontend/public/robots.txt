@@ -1,0 +1,6 @@
+# Codemation - Robots.txt
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://codemation.agency/sitemap.xml

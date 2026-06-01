@@ -28,8 +28,6 @@ app.use(limiter);
 app.use(express.json());
 
 // Routes
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/projects', require('./routes/projectRoutes'));
 app.use('/api/contact', require('./routes/contactRoutes'));
 
 // Error handling middleware

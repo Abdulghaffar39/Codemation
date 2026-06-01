@@ -1,8 +1,15 @@
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 const Services = () => {
     return (
         <div className="pt-24 pb-16 min-h-screen">
+            <SEO
+                title="Our Services | Codemation – Web, Mobile, Embedded & Design"
+                description="Explore Codemation's professional services: custom Web Development, Mobile App Development, UI/UX Design, Embedded Systems engineering, and Graphic Design."
+                keywords="web development services, mobile app development, UI/UX design agency, embedded systems, graphic design, IoT development, React development, custom software services"
+                canonicalPath="/services"
+            />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -17,32 +24,43 @@ const Services = () => {
                 <div className="grid gap-12">
                     {[
                         {
+                            id: "web-development",
                             title: "Web Development",
                             desc: "Building blazing fast, secure, and scalable web applications using the latest JavaScript frameworks like React, Next.js, and Node.js.",
                             features: ["Custom Web Apps", "E-Commerce", "SaaS Platforms", "API Development"]
                         },
                         {
+                            id: "mobile-applications",
                             title: "Mobile App Development",
                             desc: "Creating seamless native and cross-platform mobile experiences for iOS and Android that users love engaging with.",
                             features: ["React Native", "Flutter", "iOS Native", "Android Native"]
                         },
                         {
+                            id: "embedded-systems",
                             title: "Embedded Systems",
                             desc: "Bridging the gap between hardware and software with custom embedded solutions, IoT applications, and firmware development.",
                             features: ["IoT Integration", "Firmware", "Microcontrollers", "Hardware Prototypes"]
                         },
                         {
+                            id: "ui-ux-design",
                             title: "UI/UX Design",
                             desc: "Crafting beautiful, intuitive interfaces that convert. Our design process starts with deep user insights and ends with pixel-perfect Figma prototypes.",
                             features: ["Wireframing", "Prototyping", "User Testing", "Design Systems"]
+                        },
+                        {
+                            id: "graphic-design",
+                            title: "Graphic & Brand Design",
+                            desc: "Elevating brand identities with premium typography, minimalist logos, and stunning digital illustrations.",
+                            features: ["Brand Identity", "Logo Design", "Print & Packaging", "Digital Assets"]
                         }
                     ].map((service, index) => (
                         <motion.div
                             key={index}
+                            id={service.id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="group border border-white/10 hover:border-gold/30 bg-dark-card p-8 md:p-12 transition-all flex flex-col md:flex-row gap-8"
+                            className="group border border-white/10 hover:border-gold/30 bg-dark-card p-8 md:p-12 transition-all flex flex-col md:flex-row gap-8 scroll-mt-24"
                         >
                             <div className="flex-1">
                                 <h2 className="text-3xl font-bold mb-4 group-hover:text-gold transition-colors">{service.title}</h2>
