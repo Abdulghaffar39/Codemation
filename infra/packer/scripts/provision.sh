@@ -71,17 +71,15 @@ server {
     root /var/www/codemation;
     index index.html;
 
+    # /api/health falls through to this block too, so the ALB health check
+    # actually reaches the Node backend instead of being answered by Nginx —
+    # otherwise a crashed/never-started backend looks "healthy" forever.
     location /api/ {
         proxy_pass http://127.0.0.1:5000/api/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    location /api/health {
-        return 200 'ok';
-        add_header Content-Type text/plain;
     }
 
     # Hashed assets — cache forever (Vite puts hash in filename)

@@ -27,6 +27,11 @@ app.use(limiter);
 // Body parser
 app.use(express.json());
 
+// Health check — hit by the ALB target group to detect a dead/crashed backend
+app.get('/api/health', (req, res) => {
+    res.status(200).json({ status: 'ok' });
+});
+
 // Routes
 app.use('/api/contact', require('./routes/contactRoutes'));
 
