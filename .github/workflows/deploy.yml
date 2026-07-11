@@ -77,9 +77,14 @@ jobs:
         id: packer
         working-directory: infra/packer
         run: |
+          set -o pipefail
           packer init .
           packer build -machine-readable codemation.pkr.hcl | tee build.log
           AMI_ID=$(grep 'artifact,0,id' build.log | cut -d, -f6 | cut -d: -f2)
+          if [ -z "$AMI_ID" ]; then
+            echo "::error::Packer build did not produce an AMI id"
+            exit 1
+          fi
           echo "ami_id=$AMI_ID" >> "$GITHUB_OUTPUT"
 
   deploy:

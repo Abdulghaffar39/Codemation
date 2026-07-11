@@ -43,6 +43,11 @@ variable "availability_zones" {
 variable "ami_id" {
   description = "AMI ID produced by the Packer build (infra/packer). Passed in at apply time: -var ami_id=ami-xxxx"
   type        = string
+
+  validation {
+    condition     = can(regex("^ami-[0-9a-f]+$", var.ami_id))
+    error_message = "ami_id must be a valid AMI id (e.g. ami-0123456789abcdef0) — got an empty or malformed value. This usually means the upstream Packer build step failed to produce an AMI."
+  }
 }
 
 variable "instance_type" {
