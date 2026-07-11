@@ -4,9 +4,12 @@
 set -euo pipefail
 
 sudo apt-get update -y
-sudo apt-get install -y curl nginx jq awsc
+sudo apt-get install -y curl nginx jq unzip
 
-li
+# AWS CLI v2 (official installer — more reliable than apt awscli package)
+curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
+unzip -q /tmp/awscliv2.zip -d /tmp
+sudo /tmp/aws/install
 
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs
