@@ -18,7 +18,7 @@ const Footer = () => {
                             <img src={codemationLogo} alt="Codemation Logo" className="h-10 md:h-12 w-auto object-contain drop-shadow-sm" />
                         </Link>
                         <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
-                            We design and build high-performance, premium digital experiences for the world's most innovative brands. Elevating tech, one pixel at a time
+                            We design and build high-performance, premium digital experiences for the world's most innovative brands. Elevating tech, one pixel at a time...
                         </p>
                         <div className="flex space-x-4 pt-2">
                             <a href="https://www.instagram.com/codemation.official?igsh=MWNydzFiMDdyd2h3eA==" target="_blank" aria-label="Follow Codemation on Instagram" rel="noopener noreferrer" className="p-2 bg-dark border border-white/10 hover:border-gold/50 text-gray-400 hover:text-gold transition-colors duration-300">
