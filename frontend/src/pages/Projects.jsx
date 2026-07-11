@@ -54,7 +54,7 @@ const ProjectVideo = memo(({ videoSrc, isUnmuted, onHoverStart, onHoverEnd }) =>
 
         observer.observe(container);
         return () => observer.disconnect();
-    }, [videoSrc, onHoverStart, onHoverEnd]);
+    }, [videoSrc, onHoverStart, onHoverEnd, isMobile]);
 
     useEffect(() => {
         const video = videoRef.current;
