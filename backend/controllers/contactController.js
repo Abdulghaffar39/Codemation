@@ -4,8 +4,7 @@ const { adminNotificationEmail, userConfirmationEmail } = require('../utils/emai
 
 exports.submitContact = async (req, res) => {
     try {
-        const contact = new Contact(req.body);
-        await contact.save();
+        const contact = await Contact.create(req.body);
 
         const { name, email, phone, company, message } = req.body;
 

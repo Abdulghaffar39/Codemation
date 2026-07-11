@@ -1,0 +1,11 @@
+#!/bin/bash
+# Fetches runtime secrets from Secrets Manager and writes them as env vars
+# for the systemd service (see infra/packer/scripts/provision.sh) to pick up.
+set -e
+
+SECRET_JSON=$(aws secretsmanager get-secret-value --region ${region} --secret-id "${secret_id}" --query SecretString --output text)
+
+echo "$SECRET_JSON" | jq -r 'to_entries | map("\(.key)=\(.value)") | .[]' > /etc/codemation/app.env
+chmod 600 /etc/codemation/app.env
+
+systemctl restart codemation
