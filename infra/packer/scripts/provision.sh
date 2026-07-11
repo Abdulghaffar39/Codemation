@@ -4,7 +4,9 @@
 set -euo pipefail
 
 sudo apt-get update -y
-sudo apt-get install -y curl nginx jq awscli
+sudo apt-get install -y curl nginx jq awsc
+
+li
 
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs
