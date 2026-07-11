@@ -26,7 +26,7 @@ const ProjectVideo = memo(({ videoSrc, isUnmuted, onHoverStart, onHoverEnd }) =>
     const videoRef = useRef(null);
     const containerRef = useRef(null);
     const isInViewRef = useRef(false);
-    const isMobileRef = useRef(window.innerWidth < 768);
+    const [isMobile] = useState(() => window.innerWidth < 768);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -39,17 +39,17 @@ const ProjectVideo = memo(({ videoSrc, isUnmuted, onHoverStart, onHoverEnd }) =>
                 if (!video) return;
 
                 if (entry.isIntersecting) {
-                    if (isMobileRef.current) onHoverStart();
+                    if (isMobile) onHoverStart();
                     video.src = videoSrc;
                     video.play().catch(() => {});
                 } else {
-                    if (isMobileRef.current) onHoverEnd();
+                    if (isMobile) onHoverEnd();
                     video.pause();
                     video.removeAttribute('src');
                     video.load();
                 }
             },
-            { threshold: isMobileRef.current ? 0.5 : 0.1 }
+            { threshold: isMobile ? 0.5 : 0.1 }
         );
 
         observer.observe(container);
@@ -66,8 +66,8 @@ const ProjectVideo = memo(({ videoSrc, isUnmuted, onHoverStart, onHoverEnd }) =>
         <div 
             ref={containerRef}
             className="aspect-video w-full overflow-hidden relative bg-black group"
-            onMouseEnter={!isMobileRef.current ? onHoverStart : undefined}
-            onMouseLeave={!isMobileRef.current ? onHoverEnd : undefined}
+            onMouseEnter={!isMobile ? onHoverStart : undefined}
+            onMouseLeave={!isMobile ? onHoverEnd : undefined}
         >
             <video
                 ref={videoRef}
