@@ -76,6 +76,18 @@ server {
         add_header Content-Type text/plain;
     }
 
+    # Hashed assets — cache forever (Vite puts hash in filename)
+    location ~* ^/assets/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+
+    # index.html — never cache so browser always gets latest version after deploy
+    location = /index.html {
+        add_header Cache-Control "no-cache, no-store, must-revalidate";
+        add_header Pragma "no-cache";
+    }
+
     location / {
         try_files $uri /index.html;
     }
